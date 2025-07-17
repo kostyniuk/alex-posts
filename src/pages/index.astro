@@ -8,10 +8,13 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>Alex Posts</title>
+		<link rel="stylesheet" href="/src/styles/global.css" />
 	</head>
 	<body>
-		<h1>Astro</h1>
-		<a href="/articles/test">Test</a>
+		<main class="mx-auto max-w-2xl bg-[--bg] px-5 py-12 text-[--text]">
+			<h1 class="text-4xl font-bold mb-6">Alex Posts</h1>
+			<a href="/articles/test" class="text-blue-600 hover:text-blue-800 underline">Test Article</a>
+		</main>
 	</body>
 </html>

@@ -23,6 +23,19 @@ export async function getStaticPaths() {
 const { htmlContent } = Astro.props;
 ---
 
-<main>
-  <article set:html={htmlContent} />
-</main>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Article - Alex Posts</title>
+		<link rel="stylesheet" href="/src/styles/global.css" />
+	</head>
+	<body>
+		<main class="mx-auto max-w-2xl bg-[--bg] px-5 py-12 text-[--text]">
+			<a href="/" class="text-blue-600 hover:text-blue-800 underline mb-6 inline-block">← Back to Home</a>
+			<article set:html={htmlContent} class="prose prose-lg max-w-none" />
+		</main>
+	</body>
+</html>
