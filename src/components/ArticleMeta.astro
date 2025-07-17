@@ -1,0 +1,62 @@
+---
+import { formatDate } from '../utils/articles';
+
+export interface Props {
+  title: string;
+  publishDate: string;
+  description?: string;
+  readingTime?: string;
+  tags?: string[];
+}
+
+const props: Props = Astro.props;
+
+// Format the date using the helper function
+const formattedDate = formatDate(props.publishDate, 'long');
+---
+
+<div class="article-meta mb-8">
+  <!-- Title -->
+  <h1 class="text-4xl font-bold text-[--text] mb-4 leading-tight">
+    {props.title}
+  </h1>
+  
+  <!-- Meta information row -->
+  <div class="flex flex-wrap items-center gap-4 text-sm text-gray-600 dark:text-gray-400 mb-4">
+    <!-- Publish date -->
+    <time datetime={props.publishDate} class="flex items-center gap-1">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+      </svg>
+      {formattedDate}
+    </time>
+    
+    <!-- Reading time -->
+    {props.readingTime && (
+      <span class="flex items-center gap-1">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        {props.readingTime}
+      </span>
+    )}
+  </div>
+  
+  <!-- Description -->
+  {props.description && (
+    <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+      {props.description}
+    </p>
+  )}
+  
+  <!-- Tags -->
+  {props.tags && props.tags.length > 0 && (
+    <div class="flex flex-wrap gap-2">
+      {props.tags.map(tag => (
+        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded-full">
+          {tag}
+        </span>
+      ))}
+    </div>
+  )}
+</div> 

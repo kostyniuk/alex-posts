@@ -1,5 +1,9 @@
 ---
+import PostCard from '../components/PostCard.astro';
+import { getAllArticles } from '../utils/articles';
 
+// Get all articles using the helper function
+const posts = await getAllArticles();
 ---
 
 <html lang="en">
@@ -13,8 +17,24 @@
 	</head>
 	<body>
 		<main class="mx-auto max-w-2xl bg-[--bg] px-5 py-12 text-[--text]">
-			<h1 class="text-4xl font-bold mb-6">Alex Posts</h1>
-			<a href="/articles/test" class="text-blue-600 hover:text-blue-800 underline">Test Article</a>
+			<header class="mb-12">
+				<h1 class="text-4xl font-bold mb-4">Alex Posts</h1>
+				<p class="text-lg text-gray-700 dark:text-gray-300">
+					Thoughts, tutorials, and insights about technology and development.
+				</p>
+			</header>
+			
+			<section class="space-y-8">
+				{posts.map(post => (
+					<PostCard
+						title={post.title}
+						publishDate={post.publishDate}
+						description={post.description}
+						slug={post.slug}
+						readingTime={post.readingTime}
+					/>
+				))}
+			</section>
 		</main>
 	</body>
 </html>

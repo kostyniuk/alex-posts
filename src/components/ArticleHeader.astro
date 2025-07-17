@@ -1,0 +1,47 @@
+---
+export interface Props {
+  title: string;
+  publishDate: string;
+  description?: string;
+  readingTime?: string;
+}
+
+const { title, publishDate, description, readingTime } = Astro.props;
+
+// Format the date
+const formattedDate = new Date(publishDate).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+---
+
+<header class="mb-8 border-b border-gray-200 dark:border-gray-700 pb-6">
+  <h1 class="text-4xl font-bold text-[--text] mb-4 leading-tight">
+    {title}
+  </h1>
+  
+  <div class="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400 mb-4">
+    <time datetime={publishDate} class="flex items-center gap-1">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+      </svg>
+      {formattedDate}
+    </time>
+    
+    {readingTime && (
+      <span class="flex items-center gap-1">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        {readingTime}
+      </span>
+    )}
+  </div>
+  
+  {description && (
+    <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+      {description}
+    </p>
+  )}
+</header> 

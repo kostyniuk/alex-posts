@@ -3,6 +3,8 @@ import { readFileSync } from 'node:fs';
 import { readdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
+import ArticleMeta from '../../components/ArticleMeta.astro';
+import { getArticleMetadata } from '../../utils/articles';
 
 export async function getStaticPaths() {
   const htmlDir = fileURLToPath(new URL('../../html-articles', import.meta.url));
@@ -13,14 +15,17 @@ export async function getStaticPaths() {
     const filePath = path.join(htmlDir, filename);
     const htmlContent = readFileSync(filePath, 'utf-8');
 
+    // Get metadata using the helper function
+    const metadata = getArticleMetadata(slug);
+
     return {
       params: { article: slug },
-      props: { htmlContent },
+      props: { htmlContent, metadata },
     };
   });
 }
 
-const { htmlContent } = Astro.props;
+const { htmlContent, metadata } = Astro.props;
 ---
 
 <html lang="en">
@@ -29,13 +34,23 @@ const { htmlContent } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Article - Alex Posts</title>
+		<title>{metadata.title} - Alex Posts</title>
+		<meta name="description" content={metadata.description} />
 		<link rel="stylesheet" href="/src/styles/global.css" />
 	</head>
 	<body>
 		<main class="mx-auto max-w-2xl bg-[--bg] px-5 py-12 text-[--text]">
 			<a href="/" class="text-blue-600 hover:text-blue-800 underline mb-6 inline-block">← Back to Home</a>
-			<article set:html={htmlContent} class="prose prose-lg max-w-none" />
+			
+			<ArticleMeta
+				title={metadata.title}
+				publishDate={metadata.publishDate}
+				description={metadata.description}
+				readingTime={metadata.readingTime}
+				tags={metadata.tags}
+			/>
+			
+			<article set:html={htmlContent} class="prose prose-lg max-w-none prose-headings:text-[--text] prose-p:text-gray-700 dark:prose-p:text-gray-300" />
 		</main>
 	</body>
 </html>
