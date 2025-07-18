@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import ArticleMeta from '../../components/ArticleMeta.astro';
 import { getArticleMetadata } from '../../utils/articles';
+import '../../styles/global.css';
 
 export async function getStaticPaths() {
   const htmlDir = path.join(process.cwd(), 'public/html-articles');
@@ -36,7 +37,7 @@ const { htmlContent, metadata } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{metadata.title} - Alex Posts </title>
 		<meta name="description" content={metadata.description} />
-		<link rel="stylesheet" href="/src/styles/global.css" />
+
 	</head>
 	<body>
 		{metadata.fullScreen ? (

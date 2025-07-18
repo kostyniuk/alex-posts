@@ -1,6 +1,7 @@
 ---
 import PostCard from '../components/PostCard.astro';
 import { getAllArticles } from '../utils/articles';
+import '../styles/global.css';
 
 // Get all articles using the helper function
 const posts = await getAllArticles();
@@ -13,7 +14,7 @@ const posts = await getAllArticles();
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Alex Posts ✨</title>
-		<link rel="stylesheet" href="/src/styles/global.css" />
+
 	</head>
 	<body>
 		<main class="mx-auto max-w-2xl px-5 py-12 text-[--text]">
