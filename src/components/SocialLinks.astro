@@ -1,0 +1,15 @@
+---
+import SocialLink from './SocialLink.astro';
+
+interface Props {
+  platformUsernameMap: Record<string, string>;
+}
+
+const { platformUsernameMap } = Astro.props;
+---
+
+<div class="flex items-center gap-6">
+  {Object.entries(platformUsernameMap).map(([platform, username]) => (
+    <SocialLink platform={platform as 'github' | 'linkedin' | 'twitter' | 'instagram'} username={username} />
+  ))}
+</div> 
