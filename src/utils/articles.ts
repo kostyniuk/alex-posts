@@ -33,7 +33,12 @@ const articleMetadata: Record<string, ArticleMetadata> = {
   }
 };
 
-const htmlDir = fileURLToPath(new URL('../html-articles', import.meta.url));
+// Use a more robust path resolution that works in both dev and build environments
+const currentFile = fileURLToPath(import.meta.url);
+const htmlDir = path.join(path.dirname(currentFile), '..', 'html-articles');
+
+// Export the directory path for use in other files
+export { htmlDir };
 
 function getArticleContent(slug: string): string {
   const filePath = path.join(htmlDir, `${slug}.html`);

@@ -4,7 +4,7 @@ import { readdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import ArticleMeta from '../../components/ArticleMeta.astro';
-import { getArticleMetadata, getAllArticles } from '../../utils/articles';
+import { getArticleMetadata, getAllArticles, htmlDir } from '../../utils/articles';
 
 export async function getStaticPaths() {
   try {
@@ -12,8 +12,7 @@ export async function getStaticPaths() {
     const articles = await getAllArticles();
     
     return articles.map(article => {
-      // Read the HTML content for each article
-      const htmlDir = fileURLToPath(new URL('../../html-articles', import.meta.url));
+      // Read the HTML content for each article using the imported path
       const filePath = path.join(htmlDir, `${article.slug}.html`);
       const htmlContent = readFileSync(filePath, 'utf-8');
 
