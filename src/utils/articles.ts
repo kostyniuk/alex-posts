@@ -33,7 +33,7 @@ const articleMetadata: Record<string, ArticleMetadata> = {
   }
 };
 
-const htmlDir = fileURLToPath(new URL('../pages/articles/html-articles', import.meta.url));
+const htmlDir = path.join(process.cwd(), 'public/html-articles');
 
 export async function getAllArticles(): Promise<ArticleData[]> {
   const files = await readdir(htmlDir);
