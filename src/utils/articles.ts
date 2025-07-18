@@ -1,18 +1,18 @@
 import { readdir } from 'node:fs/promises';
+import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
-import { readFileSync } from 'node:fs';
 
 export interface ArticleMetadata {
   title: string;
   publishDate: string;
   description: string;
-  readingTime?: string;
   tags?: string[];
 }
 
 export interface ArticleData extends ArticleMetadata {
   slug: string;
+  readingTime: string;
 }
 
 const articleMetadata: Record<string, ArticleMetadata> = {
@@ -24,23 +24,34 @@ const articleMetadata: Record<string, ArticleMetadata> = {
   }
 };
 
+const htmlDir = fileURLToPath(new URL('../html-articles', import.meta.url));
+
+function getArticleContent(slug: string): string {
+  const filePath = path.join(htmlDir, `${slug}.html`);
+  return readFileSync(filePath, 'utf-8');
+}
+
+function calculateReadingTime(content: string): string {
+  const wordsPerMinute = 200;
+  const wordCount = content.split(/\s+/).length;
+  const minutes = Math.ceil(wordCount / wordsPerMinute);
+  return `${minutes} min read`;
+}
+
 export async function getAllArticles(): Promise<ArticleData[]> {
-  const htmlDir = fileURLToPath(new URL('../html-articles', import.meta.url));
   const files = await readdir(htmlDir);
 
   return files
     .filter(file => file.endsWith('.html'))
     .map(filename => {
       const slug = path.basename(filename, '.html');
-      const filePath = path.join(htmlDir, filename);
-      const htmlContent = readFileSync(filePath, 'utf-8');
       const metadata = articleMetadata[slug];
       
       if (!metadata) {
         throw new Error(`No metadata found for article: ${slug}. Please add it to the articleMetadata object in src/utils/articles.ts`);
       }
       
-      // Calculate reading time from actual content
+      const htmlContent = getArticleContent(slug);
       const readingTime = calculateReadingTime(htmlContent);
       
       return {
@@ -52,30 +63,21 @@ export async function getAllArticles(): Promise<ArticleData[]> {
     .sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
 }
 
-export function getArticleMetadata(slug: string): ArticleMetadata {
+export function getArticleMetadata(slug: string): ArticleData {
   const metadata = articleMetadata[slug];
   
   if (!metadata) {
     throw new Error(`No metadata found for article: ${slug}. Please add it to the articleMetadata object in src/utils/articles.ts`);
   }
   
-  // Read the actual content to calculate reading time
-  const htmlDir = fileURLToPath(new URL('../html-articles', import.meta.url));
-  const filePath = path.join(htmlDir, `${slug}.html`);
-  const htmlContent = readFileSync(filePath, 'utf-8');
+  const htmlContent = getArticleContent(slug);
   const readingTime = calculateReadingTime(htmlContent);
   
   return {
+    slug,
     ...metadata,
     readingTime
   };
-}
-
-export function calculateReadingTime(content: string): string {
-  const wordsPerMinute = 200;
-  const wordCount = content.split(/\s+/).length;
-  const minutes = Math.ceil(wordCount / wordsPerMinute);
-  return `${minutes} min read`;
 }
 
 export function formatDate(dateString: string, format: 'short' | 'long' = 'long'): string {

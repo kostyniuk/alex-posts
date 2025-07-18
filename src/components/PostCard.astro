@@ -6,35 +6,30 @@ export interface Props {
   publishDate: string;
   description?: string;
   slug: string;
-  readingTime?: string;
+  readingTime: string;
 }
 
-const { title, publishDate, description, slug, readingTime } = Astro.props;
-
-const formattedDate = formatDate(publishDate, 'short');
+const props: Props = Astro.props;
+const formattedDate = formatDate(props.publishDate, 'short');
 ---
 
 <article class="border border-gray-200 dark:border-gray-700 rounded-lg p-6 hover:shadow-lg transition-shadow duration-200 cursor-pointer group">
-  <a href={`/articles/${slug}`} class="block">
+  <a href={`/articles/${props.slug}`} class="block">
     <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 mb-3">
-      <time datetime={publishDate}>
+      <time datetime={props.publishDate}>
         {formattedDate} 📅
       </time>
-      {readingTime && (
-        <>
-          <span>•</span>
-          <span>{readingTime} ⏱️</span>
-        </>
-      )}
+      <span>•</span>
+      <span>{props.readingTime} ⏱️</span>
     </div>
     
     <h2 class="text-xl font-semibold text-article-pink-400 mb-3 transition-all duration-500 ease-out group-hover:scale-104 group-hover:drop-shadow-2xl group-hover:shadow-white/30">
-      {title}
+      {props.title}
     </h2>
     
-    {description && (
+    {props.description && (
       <p class="text-gray-700 dark:text-gray-300 mb-4 line-clamp-3">
-        {description}
+        {props.description}
       </p>
     )}
   </a>
