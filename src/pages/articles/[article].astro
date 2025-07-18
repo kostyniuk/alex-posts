@@ -34,13 +34,18 @@ const { htmlContent, metadata } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{metadata.title} - Alex Posts</title>
+		<title>{metadata.title} - Alex Posts </title>
 		<meta name="description" content={metadata.description} />
 		<link rel="stylesheet" href="/src/styles/global.css" />
 	</head>
 	<body>
-		<main class="mx-auto max-w-2xl bg-[--bg] px-5 py-12 text-[--text]">
-			<a href="/" class="text-blue-600 hover:text-blue-800 underline mb-6 inline-block">← Back to Home</a>
+		<main class="mx-auto max-w-2xl px-5 py-12 text-[--text]">
+			<a href="/" class="inline-flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-article-pink-500 transition-colors duration-200 mb-6 group">
+				<svg class="w-4 h-4 transition-transform duration-200 group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+				</svg>
+				Back to Home
+			</a>
 			
 			<ArticleMeta
 				title={metadata.title}
