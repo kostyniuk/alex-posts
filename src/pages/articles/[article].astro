@@ -4,25 +4,28 @@ import { readdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import ArticleMeta from '../../components/ArticleMeta.astro';
-import { getArticleMetadata } from '../../utils/articles';
+import { getArticleMetadata, getAllArticles } from '../../utils/articles';
 
 export async function getStaticPaths() {
-  const htmlDir = fileURLToPath(new URL('../../html-articles', import.meta.url));
-  const files = await readdir(htmlDir);
+  try {
+    // Use the existing getAllArticles function to get the list of articles
+    const articles = await getAllArticles();
+    
+    return articles.map(article => {
+      // Read the HTML content for each article
+      const htmlDir = fileURLToPath(new URL('../../html-articles', import.meta.url));
+      const filePath = path.join(htmlDir, `${article.slug}.html`);
+      const htmlContent = readFileSync(filePath, 'utf-8');
 
-  return files.map(filename => {
-    const slug = path.basename(filename, '.html');
-    const filePath = path.join(htmlDir, filename);
-    const htmlContent = readFileSync(filePath, 'utf-8');
-
-    // Get metadata using the helper function
-    const metadata = getArticleMetadata(slug);
-
-    return {
-      params: { article: slug },
-      props: { htmlContent, metadata },
-    };
-  });
+      return {
+        params: { article: article.slug },
+        props: { htmlContent, metadata: article },
+      };
+    });
+  } catch (error) {
+    console.error('Error in getStaticPaths:', error);
+    throw error;
+  }
 }
 
 const { htmlContent, metadata } = Astro.props;
