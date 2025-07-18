@@ -8,11 +8,12 @@ export interface ArticleMetadata {
   publishDate: string;
   description: string;
   tags?: string[];
+  fullScreen?: boolean;
+  readingTime: string;
 }
 
 export interface ArticleData extends ArticleMetadata {
   slug: string;
-  readingTime: string;
 }
 
 const articleMetadata: Record<string, ArticleMetadata> = {
@@ -20,7 +21,15 @@ const articleMetadata: Record<string, ArticleMetadata> = {
     title: 'Sample Article: ArticleMeta Component Demo',
     publishDate: '2025-07-18',
     description: 'A demonstration of the ArticleMeta component showing how to display article metadata including title, publish date, description, and tags.',
-    tags: ['component', 'demo', 'metadata']
+    tags: ['component', 'demo', 'metadata'],
+    readingTime: '3 min read'
+  },
+  'mvcc-and-locking': {
+    title: 'MVCC & Locking',
+    publishDate: '2025-07-18',
+    description: 'Deep dive into MVCC and locking in PostgreSQL',
+    fullScreen: true,
+    readingTime: '20 min read'
   }
 };
 
@@ -31,12 +40,7 @@ function getArticleContent(slug: string): string {
   return readFileSync(filePath, 'utf-8');
 }
 
-function calculateReadingTime(content: string): string {
-  const wordsPerMinute = 200;
-  const wordCount = content.split(/\s+/).length;
-  const minutes = Math.ceil(wordCount / wordsPerMinute);
-  return `${minutes} min read`;
-}
+
 
 export async function getAllArticles(): Promise<ArticleData[]> {
   const files = await readdir(htmlDir);
@@ -51,13 +55,9 @@ export async function getAllArticles(): Promise<ArticleData[]> {
         throw new Error(`No metadata found for article: ${slug}. Please add it to the articleMetadata object in src/utils/articles.ts`);
       }
       
-      const htmlContent = getArticleContent(slug);
-      const readingTime = calculateReadingTime(htmlContent);
-      
       return {
         slug,
-        ...metadata,
-        readingTime
+        ...metadata
       };
     })
     .sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
@@ -70,13 +70,9 @@ export function getArticleMetadata(slug: string): ArticleData {
     throw new Error(`No metadata found for article: ${slug}. Please add it to the articleMetadata object in src/utils/articles.ts`);
   }
   
-  const htmlContent = getArticleContent(slug);
-  const readingTime = calculateReadingTime(htmlContent);
-  
   return {
     slug,
-    ...metadata,
-    readingTime
+    ...metadata
   };
 }
 
