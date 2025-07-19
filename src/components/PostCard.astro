@@ -13,9 +13,9 @@ const props: Props = Astro.props;
 const formattedDate = formatDate(props.publishDate, 'short');
 ---
 
-<article class="border border-gray-200 dark:border-gray-700 rounded-lg p-6 hover:shadow-lg transition-shadow duration-200 cursor-pointer group">
+<article class="border border-gray-700 rounded-lg p-6 hover:shadow-lg transition-shadow duration-200 cursor-pointer group">
   <a href={`/articles/${props.slug}`} class="block">
-    <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 mb-3">
+    <div class="flex items-center gap-2 text-sm text-gray-400 mb-3">
       <time datetime={props.publishDate}>
         {formattedDate} 📅
       </time>
@@ -28,7 +28,7 @@ const formattedDate = formatDate(props.publishDate, 'short');
     </h2>
     
     {props.description && (
-      <p class="text-gray-700 dark:text-gray-300 mb-4 line-clamp-3">
+      <p class="text-gray-300 mb-4 line-clamp-3">
         {props.description}
       </p>
     )}

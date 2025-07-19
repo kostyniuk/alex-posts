@@ -13,40 +13,32 @@ const props: Props = Astro.props;
 const formattedDate = formatDate(props.publishDate, 'long');
 ---
 
-<div class="article-meta mb-8">
-  <h1 class="text-4xl font-bold text-article-pink-400 mb-4 leading-tight">
+<header class="mb-8 border-b border-gray-700 pb-6">
+  <h1 class="text-4xl font-bold mb-4 text-[--text]">
     {props.title}
   </h1>
   
-  <div class="flex flex-wrap items-center gap-4 text-sm text-gray-600 dark:text-gray-400 mb-4">
-    <time datetime={props.publishDate} class="flex items-center gap-1">
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-      </svg>
+  <div class="flex flex-wrap items-center gap-4 text-sm text-gray-400 mb-4">
+    <time datetime={props.publishDate}>
       {formattedDate} 📅
     </time>
-    
-    <span class="flex items-center gap-1">
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-      </svg>
-      {props.readingTime} ⏱️
-    </span>
+    <span>•</span>
+    <span>{props.readingTime} ⏱️</span>
   </div>
   
   {props.description && (
-    <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+    <p class="text-lg text-gray-300 leading-relaxed mb-4">
       {props.description}
     </p>
   )}
   
-  <!-- {props.tags && props.tags.length > 0 && (
+  {props.tags && props.tags.length > 0 && (
     <div class="flex flex-wrap gap-2">
       {props.tags.map(tag => (
-        <span class="px-4 py-2 bg-gray-100 dark:bg-article-pink-400 text-gray-700 dark:text-article-pink-900 text-base font-medium rounded-full">
+        <span class="px-4 py-2 bg-article-pink-400 text-article-pink-900 text-base font-medium rounded-full">
           {tag}
         </span>
       ))}
     </div>
-  )} -->
-</div> 
+  )}
+</header> 

@@ -61,7 +61,7 @@ const { htmlContent, metadata } = Astro.props;
 		) : (
 			<!-- Regular article layout -->
 			<main class="mx-auto max-w-2xl px-5 py-12 text-[--text]">
-				<a href="/" class="inline-flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-article-pink-500 transition-colors duration-200 mb-6 group">
+				<a href="/" class="inline-flex items-center gap-2 text-gray-400 hover:text-article-pink-500 transition-colors duration-200 mb-6 group">
 					<svg class="w-4 h-4 transition-transform duration-200 group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
 					</svg>
@@ -76,7 +76,7 @@ const { htmlContent, metadata } = Astro.props;
 					tags={metadata.tags}
 				/>
 				
-				<article set:html={htmlContent} class="prose prose-lg max-w-none prose-headings:text-[--text] prose-p:text-gray-700 dark:prose-p:text-gray-300" />
+				<article set:html={htmlContent} class="prose prose-lg max-w-none prose-headings:text-[--text] prose-p:text-gray-300" />
 			</main>
 		)}
 	</body>
