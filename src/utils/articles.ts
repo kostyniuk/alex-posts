@@ -30,6 +30,13 @@ const articleMetadata: Record<string, ArticleMetadata> = {
     description: 'Deep dive into MVCC and locking in PostgreSQL',
     fullScreen: true,
     readingTime: '20 min read'
+  },
+  'from-jsx-to-dom': {
+    title: 'From JSX to DOM',
+    publishDate: '2025-07-21',
+    description: '🚀 The Journey of Your React Code',
+    fullScreen: true,
+    readingTime: '6 min read'
   }
 };
 
