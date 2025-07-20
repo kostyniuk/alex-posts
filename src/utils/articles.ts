@@ -27,7 +27,7 @@ const articleMetadata: Record<string, ArticleMetadata> = {
   'mvcc-and-locking': {
     title: 'MVCC & Locking',
     publishDate: '2025-07-18',
-    description: 'Deep dive into MVCC and locking in PostgreSQL',
+    description: '🔍 Deep dive into MVCC and locking in PostgreSQL',
     fullScreen: true,
     readingTime: '20 min read'
   },
