@@ -29,6 +29,7 @@ const articleMetadata: Record<string, ArticleMetadata> = {
     publishDate: '2025-07-18',
     description: '👻 Deep dive into MVCC and locking in PostgreSQL',
     fullScreen: true,
+    tags: ['postgres'],
     readingTime: '20 min read'
   },
   'from-jsx-to-dom': {
@@ -36,6 +37,7 @@ const articleMetadata: Record<string, ArticleMetadata> = {
     publishDate: '2025-07-21',
     description: '🚀 The Journey of Your React Code',
     fullScreen: true,
+    tags: ['react'],
     readingTime: '6 min read'
   },
   'postgres-isolation-levels': {
@@ -43,6 +45,7 @@ const articleMetadata: Record<string, ArticleMetadata> = {
     publishDate: '2025-07-25',
     description: '🔍 Understanding PostgreSQL Isolation Levels',
     fullScreen: true,
+    tags: ['postgres'],
     readingTime: '15 min read'
   }
 };

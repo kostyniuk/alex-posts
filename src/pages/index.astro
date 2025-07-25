@@ -5,6 +5,9 @@ import '../styles/global.css';
 
 // Get all articles using the helper function
 const posts = await getAllArticles();
+
+// Get all unique tags from articles
+const allTags = [...new Set(posts.flatMap(post => post.tags || []))].sort();
 ---
 
 <html lang="en">
@@ -37,7 +40,33 @@ const posts = await getAllArticles();
 				</p>
 			</header>
 			
-			<section class="space-y-8">
+			<!-- Tag Filter Section -->
+			<!-- <section class="mb-8">
+				<div class="flex flex-wrap gap-2 mb-4">
+					{allTags.map(tag => {
+						let buttonClasses = "px-4 py-2 font-medium rounded-full transition-all duration-200 tag-btn";
+						
+						if (tag === 'react') {
+							buttonClasses += " bg-gray-700 text-gray-300 hover:bg-blue-600 hover:text-white";
+						} else if (tag === 'postgres') {
+							buttonClasses += " bg-gray-700 text-gray-300 hover:bg-orange-600 hover:text-white";
+						} else {
+							buttonClasses += " bg-gray-700 text-gray-300 hover:bg-gray-600";
+						}
+						
+						return (
+							<button 
+								class={buttonClasses}
+								data-tag={tag}
+							>
+								{tag}
+							</button>
+						);
+					})}
+				</div>
+			</section> -->
+			
+			<section id="posts-container" class="space-y-8">
 				{posts.map(post => (
 					<PostCard
 						title={post.title}
@@ -45,9 +74,83 @@ const posts = await getAllArticles();
 						description={post.description}
 						slug={post.slug}
 						readingTime={post.readingTime}
+						tags={post.tags}
 					/>
 				))}
 			</section>
 		</main>
+		
+		<script>
+			// Tag filtering functionality
+			document.addEventListener('DOMContentLoaded', function() {
+				const tagButtons = document.querySelectorAll('.tag-btn');
+				const posts = document.querySelectorAll('#posts-container article');
+				
+				console.log('Found tag buttons:', tagButtons.length);
+				console.log('Found posts:', posts.length);
+				
+				tagButtons.forEach((button: Element) => {
+					button.addEventListener('click', function(this: Element) {
+						const selectedTag = this.getAttribute('data-tag');
+						const isCurrentlyActive = this.classList.contains('active-tag');
+						console.log('Selected tag:', selectedTag, 'Currently active:', isCurrentlyActive);
+						
+						// If clicking on an already active button, remove filter (show all)
+						if (isCurrentlyActive) {
+							// Reset all buttons to inactive state
+							tagButtons.forEach((btn: Element) => {
+								btn.classList.remove('bg-article-pink-400', 'text-article-pink-900', 'bg-blue-600', 'bg-orange-600', 'text-white', 'active-tag');
+								btn.classList.add('bg-gray-700', 'text-gray-300');
+							});
+							
+							// Show all posts
+							posts.forEach((post: Element) => {
+								const postElement = post as HTMLElement;
+								postElement.style.display = 'block';
+								postElement.style.animation = 'fadeIn 0.3s ease-in-out';
+							});
+						} else {
+							// Update button styles
+							tagButtons.forEach((btn: Element) => {
+								btn.classList.remove('bg-article-pink-400', 'text-article-pink-900', 'bg-blue-600', 'bg-orange-600', 'text-white', 'active-tag');
+								btn.classList.add('bg-gray-700', 'text-gray-300');
+							});
+							
+							// Set active button style based on tag
+							this.classList.remove('bg-gray-700', 'text-gray-300');
+							if (selectedTag === 'react') {
+								this.classList.add('bg-blue-600', 'text-white', 'active-tag');
+							} else if (selectedTag === 'postgres') {
+								this.classList.add('bg-orange-600', 'text-white', 'active-tag');
+							} else {
+								this.classList.add('bg-article-pink-400', 'text-article-pink-900', 'active-tag');
+							}
+							
+							// Filter posts
+							posts.forEach((post: Element) => {
+								const postTags = post.getAttribute('data-tags');
+								const postElement = post as HTMLElement;
+								
+								console.log('Post tags:', postTags, 'for post:', postElement.querySelector('h2')?.textContent);
+								
+								if (postTags && postTags.includes(selectedTag!)) {
+									postElement.style.display = 'block';
+									postElement.style.animation = 'fadeIn 0.3s ease-in-out';
+								} else {
+									postElement.style.display = 'none';
+								}
+							});
+						}
+					});
+				});
+			});
+		</script>
+		
+		<style>
+			@keyframes fadeIn {
+				from { opacity: 0; transform: translateY(10px); }
+				to { opacity: 1; transform: translateY(0); }
+			}
+		</style>
 	</body>
 </html>
