@@ -27,7 +27,7 @@ const articleMetadata: Record<string, ArticleMetadata> = {
   'mvcc-and-locking': {
     title: 'MVCC & Locking',
     publishDate: '2025-07-18',
-    description: '🔍 Deep dive into MVCC and locking in PostgreSQL',
+    description: '👻 Deep dive into MVCC and locking in PostgreSQL',
     fullScreen: true,
     readingTime: '20 min read'
   },
@@ -37,6 +37,13 @@ const articleMetadata: Record<string, ArticleMetadata> = {
     description: '🚀 The Journey of Your React Code',
     fullScreen: true,
     readingTime: '6 min read'
+  },
+  'postgres-isolation-levels': {
+    title: 'PostgreSQL Isolation Levels: A Deep Dive',
+    publishDate: '2025-07-25',
+    description: '🔍 Understanding PostgreSQL Isolation Levels',
+    fullScreen: true,
+    readingTime: '15 min read'
   }
 };
 
