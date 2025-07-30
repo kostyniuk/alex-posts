@@ -47,6 +47,14 @@ const articleMetadata: Record<string, ArticleMetadata> = {
     fullScreen: true,
     tags: ['postgres'],
     readingTime: '15 min read'
+  },
+  'how-select-and-cache-works': {
+    title: 'How Your Rows are Found in PostgreSQL',
+    publishDate: '2025-07-31',
+    description: '💡 What Happens When You Type "SELECT..."? (Feat. PostgreSQL\'s Blazing Fast Cache!)',
+    fullScreen: true,
+    tags: ['postgres'],
+    readingTime: '9 min read'
   }
 };
 
