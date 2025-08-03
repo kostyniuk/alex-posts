@@ -55,6 +55,14 @@ const articleMetadata: Record<string, ArticleMetadata> = {
     fullScreen: true,
     tags: ['postgres'],
     readingTime: '9 min read'
+  },
+  'indexes-b-tree': {
+    title: 'Index, B+Tree, index scan flow in PostgreSQL',
+    publishDate: '2025-08-04',
+    description: '🔍 Deep dive into indexes, B+Tree, and index scan step by step in PostgreSQL',
+    fullScreen: true,
+    tags: ['postgres'],
+    readingTime: '10 min read'
   }
 };
 
