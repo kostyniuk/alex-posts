@@ -14,7 +14,7 @@ const props: Props = Astro.props;
 const formattedDate = formatDate(props.publishDate, 'short');
 ---
 
-<article class="border border-gray-700 rounded-lg p-6 hover:shadow-lg transition-shadow duration-200 cursor-pointer group" data-tags={props.tags ? props.tags.join(' ') : ''}>
+<article class="glass-card p-6 transition-all duration-300 cursor-pointer group" data-tags={props.tags ? props.tags.join(' ') : ''}>
   <a href={`/articles/${props.slug}`} class="block">
     <div class="flex items-center gap-2 text-sm text-gray-400 mb-3">
       <time datetime={props.publishDate}>
