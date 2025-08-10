@@ -63,6 +63,14 @@ const articleMetadata: Record<string, ArticleMetadata> = {
     fullScreen: true,
     tags: ['postgres'],
     readingTime: '10 min read'
+  },
+  'tree-shaking': {
+    title: 'Tree Shaking & Dead Code',
+    publishDate: '2025-08-10',
+    description: '🪶 How modern bundlers remove unused code: deep dive into tree shaking, dead code detection, ESM vs CommonJS, and the `sideEffects` flag.',
+    fullScreen: true,
+    tags: ['javascript'],
+    readingTime: '6 min read'
   }
 };
 
