@@ -71,6 +71,14 @@ const articleMetadata: Record<string, ArticleMetadata> = {
     fullScreen: true,
     tags: ['javascript'],
     readingTime: '6 min read'
+  },
+  'wal': {
+    title: 'Understanding Postgres WAL & Shared Buffers',
+    publishDate: '2025-08-18',
+    description: '🔍 Deep dive into WAL (Write Ahead Log) & Shared Buffers in PostgreSQL',
+    fullScreen: true,
+    tags: ['postgres'],
+    readingTime: '12 min read'
   }
 };
 

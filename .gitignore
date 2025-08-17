@@ -23,3 +23,6 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 node_modules/.vite/deps/_metadata.json
+
+# astro
+.astro/
