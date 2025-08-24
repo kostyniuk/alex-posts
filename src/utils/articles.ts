@@ -79,6 +79,14 @@ const articleMetadata: Record<string, ArticleMetadata> = {
     fullScreen: true,
     tags: ['postgres'],
     readingTime: '12 min read'
+  },
+  'window-functions': {
+    title: 'Window Functions',
+    publishDate: '2025-08-24',
+    description: '🪟 Deep dive into Window and Aggregate Functions in PostgreSQL and their usage in real-world scenarios',
+    fullScreen: true,
+    tags: ['postgres'],
+    readingTime: '15 min read'
   }
 };
 
