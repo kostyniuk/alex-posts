@@ -87,6 +87,14 @@ const articleMetadata: Record<string, ArticleMetadata> = {
     fullScreen: true,
     tags: ['postgres'],
     readingTime: '15 min read'
+  },
+  'shared-buffers-management': {
+    title: 'Shared Buffer Access Rules & Replacement Strategy in PostgreSQL',
+    publishDate: '2025-08-29',
+    description: '🌕 Exploring PostgreSQL\'s buffer management internals',
+    fullScreen: true,
+    tags: ['postgres'],
+    readingTime: '7 min read'
   }
 };
 
