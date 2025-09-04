@@ -95,6 +95,14 @@ const articleMetadata: Record<string, ArticleMetadata> = {
     fullScreen: true,
     tags: ['postgres'],
     readingTime: '7 min read'
+  },
+  'node-non-blocking': {
+    title: 'Node.js Non-Blocking nature',
+    publishDate: '2025-09-04',
+    description: '🔍 Why Node.js "Blocking" Operations Don\'t Actually Block Node',
+    fullScreen: true,
+    tags: ['nodejs'],
+    readingTime: '10 min read'
   }
 };
 
