@@ -103,6 +103,14 @@ const articleMetadata: Record<string, ArticleMetadata> = {
     fullScreen: true,
     tags: ['nodejs'],
     readingTime: '10 min read'
+  },
+  'mount-vs-render': {
+    title: 'Mounting vs Rendering',
+    publishDate: '2025-10-03',
+    description: '🏗️ Understanding React Component Lifecycle: Mounting vs Rendering',
+    fullScreen: true,
+    tags: ['react'],
+    readingTime: '5 min read'
   }
 };
 
