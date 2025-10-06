@@ -11,12 +11,34 @@
 body {
   /* Layered radial gradients to create a soft, liquid-like background */
   background:
-    radial-gradient(1000px 1000px at 0% 0%, rgba(236, 72, 153, 0.15), transparent 60%),
-    radial-gradient(800px 800px at 100% 0%, rgba(59, 130, 246, 0.12), transparent 60%),
-    radial-gradient(900px 900px at 50% 100%, rgba(34, 197, 94, 0.10), transparent 60%),
+    /* Gentle vignette to smoothly darken the sides */
+    linear-gradient(90deg,
+      rgba(10, 12, 20, 0.65) 0%,
+      rgba(10, 12, 20, 0.00) 25%,
+      rgba(10, 12, 20, 0.00) 75%,
+      rgba(10, 12, 20, 0.65) 100%),
+    /* Broad center glow that fades gradually */
+    radial-gradient(1400px 900px at 50% 15%,
+      rgba(255, 255, 255, 0.06) 0%,
+      rgba(255, 255, 255, 0.02) 40%,
+      rgba(255, 255, 255, 0.00) 75%),
+    /* Use multi-stop fades and fade into the same base color to avoid banding */
+    radial-gradient(1200px 900px at 20% 0%,
+      rgba(236, 72, 153, 0.16) 0%,
+      rgba(236, 72, 153, 0.08) 35%,
+      rgba(10, 12, 20, 0) 70%),
+    radial-gradient(1000px 800px at 80% 0%,
+      rgba(59, 130, 246, 0.14) 0%,
+      rgba(59, 130, 246, 0.07) 35%,
+      rgba(10, 12, 20, 0) 70%),
+    radial-gradient(1100px 900px at 50% 100%,
+      rgba(34, 197, 94, 0.10) 0%,
+      rgba(34, 197, 94, 0.05) 35%,
+      rgba(10, 12, 20, 0) 70%),
     rgb(10, 12, 20);
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  /* Scrolling attachment helps avoid harsh edges and banding on some GPUs */
+  background-attachment: scroll;
   color: var(--text);
 }
 

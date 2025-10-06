@@ -61,14 +61,6 @@ const { htmlContent, metadata } = Astro.props;
         ) : (
 			<!-- Regular article layout -->
             <main class="relative mx-auto max-w-2xl px-5 py-12 text-[--text]">
-                <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-                    <div class="absolute -top-24 -left-32 h-[28rem] w-[28rem] rounded-full blur-3xl opacity-30"
-                        style="background: radial-gradient(closest-side, rgba(236,72,153,0.35), transparent);"></div>
-                    <div class="absolute -top-12 -right-24 h-[26rem] w-[26rem] rounded-full blur-3xl opacity-25"
-                        style="background: radial-gradient(closest-side, rgba(59,130,246,0.35), transparent);"></div>
-                    <div class="absolute -bottom-24 left-1/2 h-[30rem] w-[30rem] rounded-full blur-3xl opacity-20"
-                        style="background: radial-gradient(closest-side, rgba(34,197,94,0.35), transparent);"></div>
-                </div>
 				<a href="/" class="inline-flex items-center gap-2 text-gray-400 hover:text-article-pink-500 transition-colors duration-200 mb-6 group">
 					<svg class="w-4 h-4 transition-transform duration-200 group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
