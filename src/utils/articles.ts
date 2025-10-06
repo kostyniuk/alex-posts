@@ -111,6 +111,14 @@ const articleMetadata: Record<string, ArticleMetadata> = {
     fullScreen: true,
     tags: ['react'],
     readingTime: '5 min read'
+  },
+  'activity-component': {
+    title: 'Activity Component',
+    publishDate: '2025-10-06',
+    description: '🧩 React’s New <Activity> Component: Hide and Restore UI Effortlessly',
+    fullScreen: true,
+    tags: ['react'],
+    readingTime: '8 min read'
   }
 };
 
