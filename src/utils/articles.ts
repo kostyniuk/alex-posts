@@ -119,6 +119,14 @@ const articleMetadata: Record<string, ArticleMetadata> = {
     fullScreen: true,
     tags: ['react'],
     readingTime: '8 min read'
+  },
+  'drizzle-libsql-configuration': {
+    title: 'Drizzle Magic with Next.js',
+    publishDate: '2025-10-09',
+    description: '🔍 DB Setup for Next.js application in 3 Minutes(feat. Drizzle and libSQL)',
+    fullScreen: true,
+    tags: ['postgres'],
+    readingTime: '7 min read'
   }
 };
 
