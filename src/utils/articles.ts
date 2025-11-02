@@ -127,6 +127,14 @@ const articleMetadata: Record<string, ArticleMetadata> = {
     fullScreen: true,
     tags: ['postgres'],
     readingTime: '7 min read'
+  },
+  'why-you-should-use-ai-to-code': {
+    title: 'If you’re still coding *without AI*, you’re not a “purist” — you’re falling behind',
+    publishDate: '2025-11-03',
+    description: '🤖 AI as a Partner, Not a Replacement',
+    fullScreen: true,
+    tags: ['ai'],
+    readingTime: '5 min read'
   }
 };
 
