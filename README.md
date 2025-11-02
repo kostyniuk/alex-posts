@@ -1,1 +1,1 @@
-Astro application that helps me hare my articles on the Web
+An Astro application that allows me to publish and manage my articles online.
