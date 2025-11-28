@@ -14,7 +14,7 @@ const props: Props = Astro.props;
 const formattedDate = formatDate(props.publishDate, 'short');
 ---
 
-<article class="glass-card p-6 transition-all duration-300 cursor-pointer group relative overflow-hidden" data-tags={props.tags ? props.tags.join(' ') : ''}>
+<article class="glass-card p-6 transition-all duration-300 cursor-pointer group relative overflow-hidden opacity-80 hover:opacity-100" data-tags={props.tags ? props.tags.join(' ') : ''}>
   <a href={`/articles/${props.slug}`} class="block relative z-10">
     <div class="flex items-center gap-4 text-xs font-medium text-gray-400 mb-4 tracking-wide uppercase">
       <time datetime={props.publishDate} class="flex items-center gap-1.5">

@@ -27,27 +27,29 @@ const platformUsernameMap = {
                 Back to Home
             </a>
             
-            <div class="glass-card p-8 md:p-12 animate-fade-in">
-                <div class="flex flex-col md:flex-row gap-8 items-center md:items-start">
-                    <div class="shrink-0">
-                        <img 
-                            src="/profile_icon.jpg" 
-                            alt="Alex" 
-                            class="w-32 h-32 rounded-full object-cover border border-white/20 shadow-2xl"
-                        />
-                    </div>
-                    <div class="flex-1 text-center md:text-left">
-                        <h1 class="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60">About Me</h1>
-                        
-                        <div class="prose prose-invert prose-lg max-w-none">
-                            <p class="text-gray-300 leading-relaxed mb-10">
-                                Hi! I'm Alex. I'm a software developer passionate about building great web experiences and sharing what I learn along the way.
-                            </p>
+            <div class="animate-fade-in">
+                <div class="glass-card p-8 md:p-12 opacity-80 hover:opacity-100 transition-opacity duration-300">
+                    <div class="flex flex-col md:flex-row gap-8 items-center md:items-start">
+                        <div class="shrink-0">
+                            <img 
+                                src="/profile_icon.jpg" 
+                                alt="Alex" 
+                                class="w-32 h-32 rounded-full object-cover border border-white/20 shadow-2xl"
+                            />
+                        </div>
+                        <div class="flex-1 text-center md:text-left">
+                            <h1 class="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60">About Me</h1>
+                            
+                            <div class="prose prose-invert prose-lg max-w-none">
+                                <p class="text-gray-300 leading-relaxed mb-10">
+                                    Hi! I'm Alex. I'm a software developer passionate about building great web experiences and sharing what I learn along the way.
+                                </p>
 
-                            <div class="border-t border-white/10 pt-8 mt-8 flex flex-col md:items-start items-center">
-                                <p class="text-sm font-medium text-gray-400 mb-6 uppercase tracking-wider">Connect with me</p>
-                                
-                                <SocialLinks platformUsernameMap={platformUsernameMap} />
+                                <div class="border-t border-white/10 pt-8 mt-8 flex flex-col md:items-start items-center">
+                                    <p class="text-sm font-medium text-gray-400 mb-6 uppercase tracking-wider">Connect with me</p>
+                                    
+                                    <SocialLinks platformUsernameMap={platformUsernameMap} />
+                                </div>
                             </div>
                         </div>
                     </div>
