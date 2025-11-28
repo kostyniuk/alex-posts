@@ -39,14 +39,14 @@ const { htmlContent, metadata } = Astro.props;
 		<meta name="description" content={metadata.description} />
 
 	</head>
-    <body>
+	<body class="antialiased selection:bg-pink-500/30">
 		{metadata.fullScreen ? (
 			<!-- Full-screen iframe layout -->
 			<div class="h-screen flex flex-col">
 				<!-- Header with back button -->
-                <header class="bg-white/5 backdrop-blur-md border-b border-gray-700 p-4">
-					<a href="/" class="inline-flex items-center gap-2 text-gray-400 hover:text-article-pink-400 transition-colors duration-200 group">
-						<svg class="w-4 h-4 transition-transform duration-200 group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <header class="bg-white/5 backdrop-blur-md border-b border-white/10 p-4">
+					<a href="/" class="inline-flex items-center gap-2 text-gray-400 hover:text-pink-400 transition-all duration-300 group px-4 py-2 rounded-full hover:bg-white/5">
+						<svg class="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
 						</svg>
 						Back to Home
@@ -60,24 +60,38 @@ const { htmlContent, metadata } = Astro.props;
 			</div>
         ) : (
 			<!-- Regular article layout -->
-            <main class="relative mx-auto max-w-2xl px-5 py-12 text-[--text]">
-				<a href="/" class="inline-flex items-center gap-2 text-gray-400 hover:text-article-pink-500 transition-colors duration-200 mb-6 group">
-					<svg class="w-4 h-4 transition-transform duration-200 group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <main class="relative mx-auto max-w-3xl px-6 py-20 text-[--text]">
+				<a href="/" class="inline-flex items-center gap-2 text-gray-400 hover:text-pink-400 transition-all duration-300 mb-10 group px-4 py-2 rounded-full hover:bg-white/5">
+					<svg class="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
 					</svg>
 					Back to Home
 				</a>
 				
-				<ArticleMeta
-					title={metadata.title}
-					publishDate={metadata.publishDate}
-					description={metadata.description}
-					readingTime={metadata.readingTime}
-					tags={metadata.tags}
-				/>
-				
-                <article set:html={htmlContent} class="prose prose-lg max-w-none prose-headings:text-[--text] prose-p:text-gray-300" />
+				<div class="glass-card p-8 md:p-12 animate-fade-in">
+					<ArticleMeta
+						title={metadata.title}
+						publishDate={metadata.publishDate}
+						description={metadata.description}
+						readingTime={metadata.readingTime}
+						tags={metadata.tags}
+					/>
+					
+					<article set:html={htmlContent} class="prose prose-invert prose-lg max-w-none mt-8 prose-headings:text-white prose-p:text-gray-300 prose-a:text-pink-400 hover:prose-a:text-pink-300 prose-code:text-pink-300 prose-code:bg-white/5 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:before:content-none prose-code:after:content-none" />
+				</div>
 			</main>
 		)}
+
+		<style>
+            .animate-fade-in {
+                opacity: 0;
+                animation: fadeIn 0.6s ease-out forwards;
+            }
+
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        </style>
 	</body>
 </html>

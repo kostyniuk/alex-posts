@@ -17,29 +17,55 @@ const platformUsernameMap = {
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>About Me</title>
-
 	</head>
-	<body>
-		<main class="mx-auto max-w-2xl px-5 py-12 text-[--text]">
-            <a href="/" class="inline-flex items-center gap-2 text-gray-400 hover:text-article-pink-500 transition-colors duration-200 mb-6 group">
-                <svg class="w-4 h-4 transition-transform duration-200 group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+	<body class="antialiased selection:bg-pink-500/30">
+		<main class="mx-auto max-w-3xl px-6 py-20 text-[--text]">
+            <a href="/" class="inline-flex items-center gap-2 text-gray-400 hover:text-pink-400 transition-all duration-300 mb-10 group px-4 py-2 rounded-full hover:bg-white/5">
+                <svg class="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                 </svg>
                 Back to Home
             </a>
-			<h1 class="text-4xl font-bold mb-8">About Me</h1>
-			
-			<div class="prose prose-invert">
-				<p class="text-lg mb-8">
-					Hi! I'm Alex. I'm a software developer passionate about building great web experiences and sharing what I learn along the way.
-				</p>
+            
+            <div class="glass-card p-8 md:p-12 animate-fade-in">
+                <div class="flex flex-col md:flex-row gap-8 items-center md:items-start">
+                    <div class="shrink-0">
+                        <img 
+                            src="/profile_icon.jpg" 
+                            alt="Alex" 
+                            class="w-32 h-32 rounded-full object-cover border border-white/20 shadow-2xl"
+                        />
+                    </div>
+                    <div class="flex-1 text-center md:text-left">
+                        <h1 class="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60">About Me</h1>
+                        
+                        <div class="prose prose-invert prose-lg max-w-none">
+                            <p class="text-gray-300 leading-relaxed mb-10">
+                                Hi! I'm Alex. I'm a software developer passionate about building great web experiences and sharing what I learn along the way.
+                            </p>
 
-				<div class="flex flex-col gap-4 text-lg">
-					<p>Connect with me on social media:</p>
-					
-					<SocialLinks platformUsernameMap={platformUsernameMap} />
-				</div>
-			</div>
+                            <div class="border-t border-white/10 pt-8 mt-8 flex flex-col md:items-start items-center">
+                                <p class="text-sm font-medium text-gray-400 mb-6 uppercase tracking-wider">Connect with me</p>
+                                
+                                <SocialLinks platformUsernameMap={platformUsernameMap} />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 		</main>
+
+        <style>
+            .animate-fade-in {
+                opacity: 0;
+                animation: fadeIn 0.6s ease-out forwards;
+            }
+
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        </style>
 	</body>
 </html>
+

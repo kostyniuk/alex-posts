@@ -17,140 +17,57 @@ const allTags = [...new Set(posts.flatMap(post => post.tags || []))].sort();
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Alex Posts ✨</title>
-
 	</head>
-    <body>
-        <main class="relative mx-auto max-w-2xl px-5 py-12 text-[--text]">
-			<header class="mb-12">
-				<div class="flex items-center justify-between mb-4">
-					<h1 class="text-4xl font-bold">Alex Posts ✨</h1>
-					<a href="/about/">
-					<div class="flex items-center gap-2 text-sm text-gray-300">
-						<span>by</span>
+    <body class="antialiased selection:bg-pink-500/30">
+        <main class="relative mx-auto max-w-3xl px-6 py-20 text-[--text]">
+			<header class="mb-20 text-center">
+				<div class="inline-flex items-center justify-center p-1 mb-8 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
+					<a href="/about/" class="flex items-center gap-3 px-1 pr-4">
 						<img 
 							src="/profile_icon.jpg" 
 							alt="Profile" 
-							class="w-10 h-10 rounded-full object-cover"
+							class="w-8 h-8 rounded-full object-cover border border-white/20"
 						/>
-					</div>
-				</a>
+						<span class="text-sm font-medium text-gray-300 hover:text-white transition-colors">By Alex</span>
+					</a>
 				</div>
-				<p class="text-lg text-gray-300">
+
+				<h1 class="text-5xl md:text-7xl font-bold mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60">
+					Alex Posts
+				</h1>
+				
+				<p class="text-xl text-gray-400 max-w-xl mx-auto leading-relaxed">
 					Insights and thoughts on technology and development, with a focus on React, its ecosystem, PostgreSQL, and all things JavaScript.
 				</p>
 			</header>
 			
-			<!-- Tag Filter Section -->
-			<!-- <section class="mb-8">
-				<div class="flex flex-wrap gap-2 mb-4">
-					{allTags.map(tag => {
-						let buttonClasses = "px-4 py-2 font-medium rounded-full transition-all duration-200 tag-btn";
-						
-						if (tag === 'react') {
-							buttonClasses += " bg-gray-700 text-gray-300 hover:bg-blue-600 hover:text-white";
-						} else if (tag === 'postgres') {
-							buttonClasses += " bg-gray-700 text-gray-300 hover:bg-orange-600 hover:text-white";
-						} else {
-							buttonClasses += " bg-gray-700 text-gray-300 hover:bg-gray-600";
-						}
-						
-						return (
-							<button 
-								class={buttonClasses}
-								data-tag={tag}
-							>
-								{tag}
-							</button>
-						);
-					})}
-				</div>
-			</section> -->
-			
-            <section id="posts-container" class="space-y-8">
-				{posts.map(post => (
-					<PostCard
-						title={post.title}
-						publishDate={post.publishDate}
-						description={post.description}
-						slug={post.slug}
-						readingTime={post.readingTime}
-						tags={post.tags}
-					/>
+            <section id="posts-container" class="grid gap-8 animate-fade-in">
+				{posts.map((post, index) => (
+					<div style={`animation-delay: ${index * 100}ms`}>
+						<PostCard
+							title={post.title}
+							publishDate={post.publishDate}
+							description={post.description}
+							slug={post.slug}
+							readingTime={post.readingTime}
+							tags={post.tags}
+						/>
+					</div>
 				))}
 			</section>
 		</main>
 		
-		<script>
-			// Tag filtering functionality
-			document.addEventListener('DOMContentLoaded', function() {
-				const tagButtons = document.querySelectorAll('.tag-btn');
-				const posts = document.querySelectorAll('#posts-container article');
-				
-				console.log('Found tag buttons:', tagButtons.length);
-				console.log('Found posts:', posts.length);
-				
-				tagButtons.forEach((button: Element) => {
-					button.addEventListener('click', function(this: Element) {
-						const selectedTag = this.getAttribute('data-tag');
-						const isCurrentlyActive = this.classList.contains('active-tag');
-						console.log('Selected tag:', selectedTag, 'Currently active:', isCurrentlyActive);
-						
-						// If clicking on an already active button, remove filter (show all)
-						if (isCurrentlyActive) {
-							// Reset all buttons to inactive state
-							tagButtons.forEach((btn: Element) => {
-								btn.classList.remove('bg-article-pink-400', 'text-article-pink-900', 'bg-blue-600', 'bg-orange-600', 'text-white', 'active-tag');
-								btn.classList.add('bg-gray-700', 'text-gray-300');
-							});
-							
-							// Show all posts
-							posts.forEach((post: Element) => {
-								const postElement = post as HTMLElement;
-								postElement.style.display = 'block';
-								postElement.style.animation = 'fadeIn 0.3s ease-in-out';
-							});
-						} else {
-							// Update button styles
-							tagButtons.forEach((btn: Element) => {
-								btn.classList.remove('bg-article-pink-400', 'text-article-pink-900', 'bg-blue-600', 'bg-orange-600', 'text-white', 'active-tag');
-								btn.classList.add('bg-gray-700', 'text-gray-300');
-							});
-							
-							// Set active button style based on tag
-							this.classList.remove('bg-gray-700', 'text-gray-300');
-							if (selectedTag === 'react') {
-								this.classList.add('bg-blue-600', 'text-white', 'active-tag');
-							} else if (selectedTag === 'postgres') {
-								this.classList.add('bg-orange-600', 'text-white', 'active-tag');
-							} else {
-								this.classList.add('bg-article-pink-400', 'text-article-pink-900', 'active-tag');
-							}
-							
-							// Filter posts
-							posts.forEach((post: Element) => {
-								const postTags = post.getAttribute('data-tags');
-								const postElement = post as HTMLElement;
-								
-								console.log('Post tags:', postTags, 'for post:', postElement.querySelector('h2')?.textContent);
-								
-								if (postTags && postTags.includes(selectedTag!)) {
-									postElement.style.display = 'block';
-									postElement.style.animation = 'fadeIn 0.3s ease-in-out';
-								} else {
-									postElement.style.display = 'none';
-								}
-							});
-						}
-					});
-				});
-			});
-		</script>
-		
 		<style>
+			.animate-fade-in > div {
+				opacity: 0;
+				animation: fadeIn 0.8s ease-out forwards;
+			}
+
 			@keyframes fadeIn {
-				from { opacity: 0; transform: translateY(10px); }
+				from { opacity: 0; transform: translateY(20px); }
 				to { opacity: 1; transform: translateY(0); }
 			}
 		</style>
 	</body>
 </html>
+

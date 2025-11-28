@@ -1,59 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --bg: rgb(40, 44, 53);
+  --bg: rgb(15, 17, 23);
   --text: #ffffff;
+  --primary-glow: conic-gradient(from 180deg at 50% 50%, #2a8af6 0deg, #a853ba 180deg, #e92a67 360deg);
 }
 
 /* Global gradient background with subtle radial blobs */
 body {
-  /* Layered radial gradients to create a soft, liquid-like background */
-  background:
-    /* Gentle vignette to smoothly darken the sides */
-    linear-gradient(90deg,
-      rgba(10, 12, 20, 0.65) 0%,
-      rgba(10, 12, 20, 0.00) 25%,
-      rgba(10, 12, 20, 0.00) 75%,
-      rgba(10, 12, 20, 0.65) 100%),
-    /* Broad center glow that fades gradually */
-    radial-gradient(1400px 900px at 50% 15%,
-      rgba(255, 255, 255, 0.06) 0%,
-      rgba(255, 255, 255, 0.02) 40%,
-      rgba(255, 255, 255, 0.00) 75%),
-    /* Use multi-stop fades and fade into the same base color to avoid banding */
-    radial-gradient(1200px 900px at 20% 0%,
-      rgba(236, 72, 153, 0.16) 0%,
-      rgba(236, 72, 153, 0.08) 35%,
-      rgba(10, 12, 20, 0) 70%),
-    radial-gradient(1000px 800px at 80% 0%,
-      rgba(59, 130, 246, 0.14) 0%,
-      rgba(59, 130, 246, 0.07) 35%,
-      rgba(10, 12, 20, 0) 70%),
-    radial-gradient(1100px 900px at 50% 100%,
-      rgba(34, 197, 94, 0.10) 0%,
-      rgba(34, 197, 94, 0.05) 35%,
-      rgba(10, 12, 20, 0) 70%),
-    rgb(10, 12, 20);
-  background-repeat: no-repeat;
-  /* Scrolling attachment helps avoid harsh edges and banding on some GPUs */
-  background-attachment: scroll;
+  font-family: 'Outfit', sans-serif;
+  background-color: var(--bg);
+  /* Modern dark grid paper effect */
+  background-image: 
+    /* Subtle top spotlight matching the pink theme */
+    radial-gradient(circle at 50% 0%, rgba(236, 72, 153, 0.08) 0%, transparent 60%),
+    /* Grid lines */
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 100% 100%, 50px 50px, 50px 50px;
+  background-attachment: fixed;
   color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* Liquid glass card style */
 .glass-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.06);
-  border-radius: 0.75rem; /* 12px rounded */
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    0 4px 30px rgba(0, 0, 0, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
 }
 
 .glass-card:hover {
-  border-color: rgba(255, 255, 255, 0.24);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.03));
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.2),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
 }
