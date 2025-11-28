@@ -142,7 +142,7 @@ const articleMetadata: Record<string, ArticleMetadata> = {
     description: '🥳 Instead of choosing between static or dynamic pages, you now get both on the same page',
     fullScreen: true,
     tags: ['react'],
-    readingTime: '10 min read'
+    readingTime: '6 min read'
   }
 };
 
