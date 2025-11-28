@@ -135,6 +135,14 @@ const articleMetadata: Record<string, ArticleMetadata> = {
     fullScreen: true,
     tags: ['ai'],
     readingTime: '5 min read'
+  },
+  'ppr': {
+    title: 'Next.js 16: The End of Static vs Dynamic(feat. PPR)',
+    publishDate: '2025-11-28',
+    description: '🥳 Instead of choosing between static or dynamic pages, you now get both on the same page',
+    fullScreen: true,
+    tags: ['react'],
+    readingTime: '10 min read'
   }
 };
 
