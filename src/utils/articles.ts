@@ -143,6 +143,14 @@ const articleMetadata: Record<string, ArticleMetadata> = {
     fullScreen: true,
     tags: ['react'],
     readingTime: '6 min read'
+  },
+  'having-vs-where-sql': {
+    title: 'Why HAVING is not a replacement for WHERE',
+    publishDate: '2025-12-14',
+    description: '🔍 The critical difference between HAVING and WHERE in SQL',
+    fullScreen: true, 
+    tags: ['postgres'],
+    readingTime: '5 min read'
   }
 };
 
