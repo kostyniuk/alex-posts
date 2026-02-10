@@ -148,9 +148,17 @@ const articleMetadata: Record<string, ArticleMetadata> = {
     title: 'Why HAVING is not a replacement for WHERE',
     publishDate: '2025-12-14',
     description: '🔍 The critical difference between HAVING and WHERE in SQL',
-    fullScreen: true, 
+    fullScreen: true,
     tags: ['postgres'],
     readingTime: '5 min read'
+  },
+  'package-lock-file': {
+    title: 'What is a Package Lock file',
+    publishDate: '2026-02-10',
+    description: '🔒 Why lock files are the silent guardians of your dependencies',
+    fullScreen: true,
+    tags: ['javascript'],
+    readingTime: '12 min read'
   }
 };
 
